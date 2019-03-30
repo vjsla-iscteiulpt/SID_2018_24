@@ -1,5 +1,6 @@
 <?php
 function get_data($whereclause){
+	
 	$urlOrigem="127.0.0.1";
 	$databaseOrigem="hotel";
 	$usernameOrigem="root";
@@ -42,22 +43,7 @@ function get_data($whereclause){
 	
 	//return json_encode($rows);
 }
-/*function InsertintoLogs($connDestino,$rows,$tabela){
-		
-	$query = "INSERT INTO table "$tabela" VALUES "(?);
-	$stmt = $mysqli->prepare($query);
-	$stmt ->bind_param("s", $one);
 
-	$mysqli->query("START TRANSACTION");
-	foreach ($array as $one) {
-		$stmt->execute();
-	}
-	$stmt->close();
-	$mysqli->query("COMMIT");
-	//	mysqli_query($connDestino,$query)
-	
-	
-}*/
 
 function migrarTabela($tabela,$connOrigem,$connDestino){
 	$id=getLastId($tabela,$connDestino);
@@ -68,7 +54,6 @@ function migrarTabela($tabela,$connOrigem,$connDestino){
 function getLog($connOrigem, $whereclause, $tabela){
 	
 	
-	//$sql = "call migrate_".$tabela"(".$id")";
 	 
 	 $sql = "Select * from ".$tabela" where id >".$whereclause;
 	
@@ -310,15 +295,7 @@ $ready = '';
 $fail = '';
  
 $data = array_filter($data);
- /* Make database connection
  
-//$connDestino = new mysqli("HOST","USERNAME","PASSWORD","DATABASE_NAME");
- 
-// Check connection
-if ($connDestino->connect_errno) {
-    echo 'Connect failed: ' . $connDestino->connect_error;
-    exit();
-}*/
 
  
  // statement .tabela()
@@ -370,8 +347,7 @@ if ( false === $commit ) {
  
 echo "<br />End of insert into ".$tabela".<br />";
  
-/* Close the database connection
-$connDestino->close();*/
+
 }
 ?>
 
